@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "672826541288",
+    "project_id": "dentist-app-b7926",
+    "storage_bucket": "dentist-app-b7926.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:672826541288:android:72c326f338de2a664ff55d",
+        "android_client_info": {
+          "package_name": "com.example.dentist_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "672826541288-qum5h17vi3c29dik4qd839evds8naic1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCotyn6AsRlK2ck-9iCkQrEETW4-vI5crs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "672826541288-qum5h17vi3c29dik4qd839evds8naic1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
