@@ -1,3 +1,4 @@
+import 'package:dentist_app/widget/app_drawer.dart';
 import 'package:dentist_app/widget/custom_button.dart';
 import 'package:dentist_app/widget/custom_profile_tile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,6 +18,7 @@ class Profile extends StatelessWidget {
     double height20 = MediaQuery.of(context).size.height / 42.62;
 
     return Scaffold(
+      drawer: const AppDrawer(),
       appBar: AppBar(
         backgroundColor: Colors.teal,
       ),

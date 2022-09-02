@@ -1,15 +1,62 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dentist_app/models/appointment.dart';
+import 'package:dentist_app/widget/app_drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class YourAppointment extends StatelessWidget {
+class YourAppointment extends StatefulWidget {
   YourAppointment({Key? key}) : super(key: key);
 
+  @override
+  State<YourAppointment> createState() => _YourAppointmentState();
+}
+
+class _YourAppointmentState extends State<YourAppointment> {
   final List<AppointmentModel> appointmentList = [];
 
   // String? dentistName;
+  void deleteAppointment(String paymentId, BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Cancel Appointment'),
+          content:
+              const Text('Are you sure you want to cancel this appointment?'),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text(
+                  'Close',
+                  style: TextStyle(color: Colors.black),
+                )),
+            TextButton(
+                onPressed: () async {
+                  await FirebaseFirestore.instance
+                      .collection('users')
+                      .doc(FirebaseAuth.instance.currentUser!.email)
+                      .collection('appointments')
+                      .doc(paymentId)
+                      .delete();
+                  Future.delayed(Duration.zero, () {
+                    Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(
+                            builder: (context) => YourAppointment()),
+                        (route) => false);
+                  });
+                },
+                child: const Text(
+                  'Yes',
+                  style: TextStyle(color: Colors.red),
+                ))
+          ],
+        );
+      },
+    );
+  }
 
   Future<List<AppointmentModel>> getAppointments() async {
     QuerySnapshot<Map<String, dynamic>> appointments = await FirebaseFirestore
@@ -35,6 +82,7 @@ class YourAppointment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: const AppDrawer(),
         appBar: AppBar(
           title: const Text("Your Appointment"),
           backgroundColor: Colors.teal,
@@ -81,7 +129,7 @@ class YourAppointment extends StatelessWidget {
                                             borderSide: const BorderSide(
                                                 color: Colors.white)),
                                         child: Container(
-                                            height: 225,
+                                            height: 230,
                                             margin: const EdgeInsets.symmetric(
                                                 horizontal: 15, vertical: 10),
                                             padding: const EdgeInsets.symmetric(
@@ -145,9 +193,15 @@ class YourAppointment extends StatelessWidget {
                                                       ],
                                                     ),
                                                     TextButton(
-                                                        onPressed: () {},
+                                                        onPressed: () {
+                                                          deleteAppointment(
+                                                              appointmentList[
+                                                                      index]
+                                                                  .paymentId,
+                                                              context);
+                                                        },
                                                         child: const Text(
-                                                          "Cancel",
+                                                          "Cancel Appointment",
                                                           style: TextStyle(
                                                               fontSize: 16,
                                                               color: Color

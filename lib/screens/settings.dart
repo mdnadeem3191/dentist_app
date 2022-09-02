@@ -1,4 +1,5 @@
 import 'package:dentist_app/screens/firebase/auth/root_screen.dart';
+import 'package:dentist_app/widget/app_drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -12,8 +13,9 @@ class Settings extends StatelessWidget {
     double height20 = MediaQuery.of(context).size.height / 42.62;
 
     return Scaffold(
+      drawer: const AppDrawer(),
       appBar: AppBar(
-        backgroundColor: const Color(0xff5abbe5),
+        backgroundColor: Colors.teal,
       ),
       backgroundColor: Colors.white,
       body: Column(

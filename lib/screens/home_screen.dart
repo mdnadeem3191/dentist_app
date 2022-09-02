@@ -19,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<DentistModel> nearbyDentist = [];
   bool isLoading = true;
+  
   @override
 // void didChangeDependencies() {
 
@@ -116,23 +117,23 @@ class _HomeScreenState extends State<HomeScreen> {
                       elevation: 5,
                       child: GestureDetector(
                         onTap: () async {
+
                           LatLngModel latlng = await googleMapsService
                               .getLatLng(nearbyDentist[index].placeId);
-                          Future.delayed(Duration.zero, () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => DetailScreen(
-                                        placeId: nearbyDentist[index].placeId,
-                                        ratingStar: nearbyDentist[index].rating,
-                                        totalReviews:
-                                            nearbyDentist[index].totalReviews,
-                                        name: nearbyDentist[index].name,
-                                        address: nearbyDentist[index].address,
-                                        phoneNumber: latlng.phoneNumber,
-                                      )),
-                            );
-                          });
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DetailScreen(
+                                      placeId: nearbyDentist[index].placeId,
+                                      ratingStar: nearbyDentist[index].rating,
+                                      totalReviews:
+                                          nearbyDentist[index].totalReviews,
+                                      name: nearbyDentist[index].name,
+                                      address: nearbyDentist[index].address,
+                                      phoneNumber: latlng.phoneNumber,
+                                    )),
+                          );
                         },
                         child: ListTile(
                           contentPadding: EdgeInsets.symmetric(

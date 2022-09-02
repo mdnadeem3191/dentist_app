@@ -102,11 +102,10 @@ class _ChangeNameState extends State<ChangeName> {
                                 .updateDisplayName(
                                     "${firstNameController.text} ${lastNameController.text}");
                             Future.delayed(Duration.zero, () {
-                              Navigator.pushReplacement(
-                                  context,
+                              Navigator.of(context).pushAndRemoveUntil(
                                   MaterialPageRoute(
-                                    builder: (context) => const Profile(),
-                                  ));
+                                      builder: (context) => const Profile()),
+                                  (route) => false);
                               ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                       content:
