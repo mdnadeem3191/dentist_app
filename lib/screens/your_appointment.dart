@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class YourAppointment extends StatefulWidget {
-  YourAppointment({Key? key}) : super(key: key);
+  const YourAppointment({Key? key}) : super(key: key);
 
   @override
   State<YourAppointment> createState() => _YourAppointmentState();
@@ -44,7 +44,7 @@ class _YourAppointmentState extends State<YourAppointment> {
                   Future.delayed(Duration.zero, () {
                     Navigator.of(context).pushAndRemoveUntil(
                         MaterialPageRoute(
-                            builder: (context) => YourAppointment()),
+                            builder: (context) => const YourAppointment()),
                         (route) => false);
                   });
                 },
